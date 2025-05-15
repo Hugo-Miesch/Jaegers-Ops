@@ -8,11 +8,12 @@ app.use(express.json());
 
 const pool = mariadb.createPool({
   host: 'localhost',
-  user: 'root',
-  password: 'ton_mot_de_passe',
+  user: 'jaegers',
+  password: 'jaegers',
   database: 'jaegers_ops',
   connectionLimit: 5
 });
+
 
 // 🔹 Fonction d'inscription
 async function registerUser(role, email, password, res) {
