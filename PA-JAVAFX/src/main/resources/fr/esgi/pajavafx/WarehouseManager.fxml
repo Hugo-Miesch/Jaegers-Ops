@@ -3,13 +3,23 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
 
 <BorderPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.pajavafx.controllers.WarehouseManagerController">
+    <top>
+        <HBox>
+            <Button text="Créer" onAction="#handleCreate" />
+            <Button text="Modifier" onAction="#handleEdit" />
+            <Button text="Supprimer" onAction="#handleDelete" />
+        </HBox>
+    </top>
     <center>
         <TableView fx:id="warehouseTable" prefHeight="200.0" prefWidth="200.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Nom" />
+                <TableColumn fx:id="addressColumn" prefWidth="150.0" text="Emplacement" />
             </columns>
         </TableView>
     </center>

@@ -26,6 +26,5 @@ public class UserManagerController implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        userTable.getItems().addAll(DataGenerator.generateUsers(10));
     }
 }

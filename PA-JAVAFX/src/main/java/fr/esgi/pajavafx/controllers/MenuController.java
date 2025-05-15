@@ -15,7 +15,7 @@ public class MenuController implements Initializable {
     @FXML
     private void handleUserManager(javafx.event.ActionEvent event) throws IOException {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("//fr/esgi/pajavafx/UserManager.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fr/esgi/pajavafx/UserManager.fxml"));
         stage.setTitle("Gestion des utilisateurs");
         stage.setScene(new Scene(root, 800, 600));
     }
@@ -48,4 +48,5 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Initialisation
     }
+
 }

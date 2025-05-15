@@ -15,4 +15,5 @@ module fr.esgi.pajavafx {
     exports fr.esgi.pajavafx;
     exports fr.esgi.pajavafx.controllers;
     opens fr.esgi.pajavafx.controllers to javafx.fxml;
+    opens fr.esgi.pajavafx.models to javafx.base;
 }
