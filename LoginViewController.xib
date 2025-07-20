@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Jeager_ops_Ipad2" customModuleProvider="target">
+            <connections>
+                <outlet property="ConnectB" destination="IrQ-6u-TIn" id="jUl-Bo-Jki"/>
+                <outlet property="PassTF" destination="xzo-AS-7y2" id="nvU-Jc-t8w"/>
+                <outlet property="UserTF" destination="0A8-iN-11M" id="jP9-nS-qUc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JAGERS-OPS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwg-js-aoD">
+                    <rect key="frame" x="315.5" y="128" width="189" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="kwg-js-aoD" secondAttribute="height" multiplier="27:7" id="ZCK-7j-QLL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
+                    <color key="textColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0A8-iN-11M">
+                    <rect key="frame" x="378" y="352" width="64" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xzo-AS-7y2">
+                    <rect key="frame" x="365" y="469" width="90.5" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IrQ-6u-TIn">
+                    <rect key="frame" x="366" y="1024" width="89" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Connect">
+                        <backgroundConfiguration key="background">
+                            <color key="backgroundColor" red="0.52941176469999995" green="0.25490196079999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="strokeColor" red="0.95686274510000002" green="0.37647058820000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </backgroundConfiguration>
+                        <color key="baseForegroundColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="ConnectHandling:" destination="-1" eventType="touchUpInside" id="JFy-ek-umu"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.098039215690000001" green="0.12941176469999999" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="xzo-AS-7y2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2hW-Ef-Mef"/>
+                <constraint firstItem="kwg-js-aoD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="104" id="Crr-YR-NBC"/>
+                <constraint firstItem="0A8-iN-11M" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Hf2-Jn-D7a"/>
+                <constraint firstItem="xzo-AS-7y2" firstAttribute="top" secondItem="0A8-iN-11M" secondAttribute="bottom" constant="83" id="SLd-5Q-4SV"/>
+                <constraint firstItem="kwg-js-aoD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jNe-ff-bNe"/>
+                <constraint firstItem="0A8-iN-11M" firstAttribute="top" secondItem="kwg-js-aoD" secondAttribute="bottom" constant="175" id="pLU-5m-s9v"/>
+            </constraints>
+            <point key="canvasLocation" x="130" y="20"/>
+        </view>
+    </objects>
+</document>
