@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^5.1.0",
-    "mariadb": "^3.4.1"
+    "mariadb": "^3.4.1",
+    "multer": "^2.0.2"
   }
 }
