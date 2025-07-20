@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Liste des Utilisateurs" />
+    <TableView fx:id="clientTable">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Nom" />
+            <TableColumn fx:id="emailColumn" text="Email" />
+        </columns>
+    </TableView>
+    <TextField fx:id="nameField" promptText="Nom" />
+    <TextField fx:id="emailField" promptText="Email" />
+    <HBox spacing="10">
+        <Button fx:id="addButton" text="Ajouter" />
+        <Button fx:id="editButton" text="Modifier" />
+        <Button fx:id="deleteButton" text="Supprimer" />
+    </HBox>
+</VBox>

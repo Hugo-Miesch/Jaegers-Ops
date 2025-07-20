@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.pajavafx.controllers.MainController">
+    <left>
+        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="100.0" spacing="20.0">
+            <children>
+                <Button fx:id="btnClient" mnemonicParsing="false" text="Client" />
+                <Button fx:id="btnTechnicien" mnemonicParsing="false" text="Technicien" />
+                <Button fx:id="btnAdmin" mnemonicParsing="false" text="Admin" />
+                <Button fx:id="btnEntrepot" mnemonicParsing="false" text="Entrepot" />
+                <Button fx:id="btnRobot" mnemonicParsing="false" text="Robot" />
+                <Button fx:id="btnTicket" mnemonicParsing="false" text="Ticket" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </left>
+    <center>
+        <Label fx:id="displayLabel" text="Bienvenue!" style="-fx-font-size: 24; -fx-text-fill: #000;" /> <!-- Label pour afficher le titre -->
+    </center>
+</BorderPane>
