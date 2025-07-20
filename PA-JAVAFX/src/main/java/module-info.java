@@ -10,6 +10,10 @@ module fr.esgi.pajavafx {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.net.http;
+    requires org.json;
+    requires java.sql;
+
 
     opens fr.esgi.pajavafx to javafx.fxml;
     exports fr.esgi.pajavafx;

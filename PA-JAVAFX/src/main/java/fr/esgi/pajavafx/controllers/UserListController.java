@@ -1,125 +1,117 @@
 package fr.esgi.pajavafx.controllers;
 
 import fr.esgi.pajavafx.models.User;
+import fr.esgi.pajavafx.ApiClient;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.collections.ObservableList;
-import fr.esgi.pajavafx.utils.DataGenerator;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import java.util.Optional;
+
+import java.util.List;
 
 public class UserListController {
-    @FXML
-    private TableView<User> userTable;
+
+    @FXML private TableView<User> clientTable;
+    @FXML private TableColumn<User, Integer> idColumn;
+    @FXML private TableColumn<User, String> nameColumn;
+    @FXML private TableColumn<User, String> emailColumn;
+    @FXML private TextField nameField;
+    @FXML private TextField emailField;
+    @FXML private Button addButton;
+    @FXML private Button editButton;
+    @FXML private Button deleteButton;
 
     @FXML
-    private TableColumn<User, Integer> idColumn;
-
-    @FXML
-    private TableColumn<User, String> nameColumn;
-
-    @FXML
-    private TableColumn<User, String> emailColumn;
-
-    private int nextId;
-
     public void initialize() {
+        // Configuration des colonnes
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        ObservableList<User> users = DataGenerator.generateUsers();
-        userTable.setItems(users);
+        // Chargement initial des utilisateurs
+        fetchUsers();
 
-        // Définir la valeur de nextId
-        nextId = users.stream()
-                .mapToInt(User::getId)
-                .max()
-                .orElse(0) + 1;
+        // Actions des boutons
+        addButton.setOnAction(event -> addUser());
+        editButton.setOnAction(event -> editUser());
+        deleteButton.setOnAction(event -> deleteUser());
     }
 
-    @FXML
-    private void handleCreate() {
-        User newUser = new User(nextId++, "", "");
-        Dialog<User> dialog = new Dialog<>();
-        dialog.setTitle("Créer un nouvel utilisateur");
-        dialog.setHeaderText("Saisir les informations de l'utilisateur");
-
-        TextField nameField = new TextField();
-        TextField emailField = new TextField();
-
-        GridPane grid = new GridPane();
-        grid.add(new Label("Nom :"), 0, 0);
-        grid.add(nameField, 1, 0);
-        grid.add(new Label("Email :"), 0, 1);
-        grid.add(emailField, 1, 1);
-        dialog.getDialogPane().setContent(grid);
-
-        ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
-
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == okButtonType) {
-                newUser.setName(nameField.getText());
-                newUser.setEmail(emailField.getText());
-                return newUser;
+    private void fetchUsers() {
+        ApiClient.getUsers(users -> {
+            clientTable.getItems().clear();
+            if (users != null) {
+                clientTable.getItems().addAll(users);
+            } else {
+                showError("Erreur lors de la récupération des utilisateurs.");
             }
-            return null;
         });
-
-        Optional<User> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            userTable.getItems().add(result.get());
-        }
     }
 
-    @FXML
-    private void handleEdit() {
-        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+    private void addUser() {
+        String name = nameField.getText();
+        String email = emailField.getText();
+
+        if (name.isEmpty() || email.isEmpty()) {
+            showError("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        User newUser = new User(0, name, email); // Laissez ID géré par le serveur
+
+        ApiClient.addUser(newUser, result -> {
+            if (result) {
+                fetchUsers(); // Récupérer et afficher les utilisateurs
+                clearFields(); // Nettoyer les champs de texte
+            } else {
+                showError("Erreur lors de l'ajout de l'utilisateur."); // Afficher une erreur
+            }
+        });
+    }
+
+    private void editUser() {
+        User selectedUser = clientTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            Dialog<User> dialog = new Dialog<>();
-            dialog.setTitle("Modifier l'utilisateur");
-            dialog.setHeaderText("Modifier les informations de l'utilisateur");
+            selectedUser.setName(nameField.getText());
+            selectedUser.setEmail(emailField.getText());
 
-            TextField nameField = new TextField(selectedUser.getName());
-            TextField emailField = new TextField(selectedUser.getEmail());
-
-            GridPane grid = new GridPane();
-            grid.add(new Label("Nom :"), 0, 0);
-            grid.add(nameField, 1, 0);
-            grid.add(new Label("Email :"), 0, 1);
-            grid.add(emailField, 1, 1);
-            dialog.getDialogPane().setContent(grid);
-
-            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-            dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
-
-            dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == okButtonType) {
-                    selectedUser.setName(nameField.getText());
-                    selectedUser.setEmail(emailField.getText());
-                    return selectedUser;
+            ApiClient.updateUser(selectedUser, result -> {
+                if (result) {
+                    fetchUsers();
+                    clearFields();
+                } else {
+                    showError("Erreur lors de la mise à jour de l'utilisateur.");
                 }
-                return null;
             });
-
-            dialog.showAndWait();
-            userTable.refresh();
+        } else {
+            showError("Veuillez sélectionner un utilisateur à modifier.");
         }
     }
 
-    @FXML
-    private void handleDelete() {
-        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+    private void deleteUser() {
+        User selectedUser = clientTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            userTable.getItems().remove(selectedUser);
+            ApiClient.deleteUser(selectedUser.getId(), result -> {
+                if (result) {
+                    fetchUsers();
+                } else {
+                    showError("Erreur lors de la suppression de l'utilisateur.");
+                }
+            });
+        } else {
+            showError("Veuillez sélectionner un utilisateur à supprimer.");
         }
+    }
+
+    private void clearFields() {
+        nameField.clear();
+        emailField.clear();
+    }
+
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

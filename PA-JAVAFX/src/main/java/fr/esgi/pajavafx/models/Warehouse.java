@@ -3,14 +3,10 @@ package fr.esgi.pajavafx.models;
 public class Warehouse {
     private int id;
     private String name;
-    private String address;
+    private int capacity;
+    private int currentCapacity;
 
-    public Warehouse(int id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
-
+    // Getters et setters
     public int getId() {
         return id;
     }
@@ -27,11 +23,19 @@ public class Warehouse {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getCurrentCapacity() {
+        return currentCapacity;
+    }
+
+    public void setCurrentCapacity(int currentCapacity) {
+        this.currentCapacity = currentCapacity;
     }
 }

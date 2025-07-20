@@ -1,0 +1,18 @@
+<!-- Robot.fxml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="fr.esgi.pajavafx.controllers.RobotController">
+    <children>
+        <TableView fx:id="robotTable">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Nom" />
+                <TableColumn fx:id="statusColumn" prefWidth="150.0" text="Statut" />
+            </columns>
+        </TableView>
+    </children>
+</VBox>

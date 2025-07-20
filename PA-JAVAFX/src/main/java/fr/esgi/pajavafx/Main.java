@@ -6,13 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fr/esgi/pajavafx/Login.fxml"));
-        primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 300, 200));
+        primaryStage.setTitle("Gestion des Clients");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
@@ -20,4 +20,3 @@ public class App extends Application {
         launch(args);
     }
 }
-

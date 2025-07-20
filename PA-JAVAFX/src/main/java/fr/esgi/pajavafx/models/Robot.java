@@ -3,14 +3,10 @@ package fr.esgi.pajavafx.models;
 public class Robot {
     private int id;
     private String name;
-    private String type;
+    private int entrepotId;
+    private String imagePath;
 
-    public Robot(int id, String name, String type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-    }
-
+    // Getters et setters
     public int getId() {
         return id;
     }
@@ -27,11 +23,19 @@ public class Robot {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public int getEntrepotId() {
+        return entrepotId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setEntrepotId(int entrepotId) {
+        this.entrepotId = entrepotId;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
